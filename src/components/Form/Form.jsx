@@ -27,22 +27,12 @@ class Form extends Component {
         });
     };
     
-     contactMatching = () => {
+  contactMatching = () => {
     const { name, number } = this.state;
     const { contacts } = this.props;
-    const namesInPhonebook = contacts.reduce(
-      (acc, contact) => [...acc, contact.name],
-      [],
-    );
-    const numbersInPhonebook = contacts.reduce(
-      (acc, contact) => [...acc, contact.number],
-      [],
-    );
+    const isContact = !!(contacts.find(contact => contact.name === name || contact.number === number));
 
-    if (
-      namesInPhonebook.includes(name) ||
-      numbersInPhonebook.includes(number)
-    ) {
+    if (isContact) {
       alert(`${name}${number} is already in contacts`);
       return true;
     }
